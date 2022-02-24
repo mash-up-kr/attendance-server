@@ -47,4 +47,12 @@ public class Team {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public static Team of(String name, Season season, TeamType type) {
+        Team team = new Team();
+        team.name = name;
+        team.season = season;
+        team.type = type;
+        return team;
+    }
 }
