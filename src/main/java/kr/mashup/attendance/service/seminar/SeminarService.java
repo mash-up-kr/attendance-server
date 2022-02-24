@@ -1,5 +1,7 @@
 package kr.mashup.attendance.service.seminar;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,5 +31,16 @@ public class SeminarService {
             seminarCreateRequest.getSeminarStartedAt()
         );
         return seminarRepository.save(seminar);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Seminar> getSeminars() {
+        //TODO 세미나 정렬 조건 및 페이징 적용
+        return seminarRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Seminar getSeminar(Long seminarId) {
+        return seminarRepository.findById(seminarId).orElseThrow(RuntimeException::new);
     }
 }
