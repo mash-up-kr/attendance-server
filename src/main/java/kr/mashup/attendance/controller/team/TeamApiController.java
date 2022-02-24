@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
+import kr.mashup.attendance.controller.ApiResponse;
 import kr.mashup.attendance.domain.team.Team;
 import kr.mashup.attendance.dto.team.TeamCreateRequest;
 import kr.mashup.attendance.dto.team.TeamResponse;
@@ -21,10 +22,10 @@ public class TeamApiController {
 
     @ApiOperation("팀 생성")
     @PostMapping
-    public TeamResponse create(
+    public ApiResponse<TeamResponse> create(
         @RequestBody TeamCreateRequest teamCreateRequest
     ) {
         Team team = teamService.create(teamCreateRequest);
-        return TeamResponse.of(team);
+        return ApiResponse.success(TeamResponse.of(team));
     }
 }
