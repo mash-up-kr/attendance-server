@@ -2,6 +2,7 @@ package kr.mashup.attendance.domain.season;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Season {
     @GeneratedValue
     private Long seasonId;
 
+    @Column(unique = true)
     private Integer number;
 
     @CreatedDate
@@ -35,4 +37,10 @@ public class Season {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public static Season from(Integer number) {
+        Season season = new Season();
+        season.number = number;
+        return season;
+    }
 }

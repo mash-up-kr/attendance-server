@@ -37,6 +37,8 @@ public class Seminar {
 
     private String title;
 
+    private String theme;
+
     private LocalDateTime seminarStartedAt;
 
     @CreatedDate
@@ -44,4 +46,13 @@ public class Seminar {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public static Seminar of(Season season, String title, String theme, LocalDateTime seminarStartedAt) {
+        Seminar seminar = new Seminar();
+        seminar.season = season;
+        seminar.title = title;
+        seminar.theme = theme;
+        seminar.seminarStartedAt = seminarStartedAt;
+        return seminar;
+    }
 }
