@@ -47,4 +47,11 @@ public class AttendanceEvent {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public static AttendanceEvent of(Seminar seminar, AttendanceEventType type) {
+        AttendanceEvent attendanceEvent = new AttendanceEvent();
+        attendanceEvent.seminar = seminar;
+        attendanceEvent.type = type;
+        return attendanceEvent;
+    }
 }
