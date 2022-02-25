@@ -38,3 +38,8 @@ test {
 jar {
 	enabled = false
 }
+
+bootJar {
+	enabled = true
+	archiveFileName = 'attendance.jar'
+}
