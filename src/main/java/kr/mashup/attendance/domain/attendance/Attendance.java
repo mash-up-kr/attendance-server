@@ -2,13 +2,9 @@ package kr.mashup.attendance.domain.attendance;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import kr.mashup.attendance.domain.member.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,11 +31,24 @@ public class Attendance {
     @JoinColumn(name = "seminar_id")
     private Seminar seminar;
 
-    //TODO ManyToOne Member
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @Enumerated(EnumType.STRING)
+    private AttendanceType type;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public static Attendance of(Seminar seminar, Member member, AttendanceType type) {
+        Attendance attendance = new Attendance();
+        attendance.seminar = seminar;
+        attendance.member = member;
+        attendance.type = type;
+        return attendance;
+    }
 }

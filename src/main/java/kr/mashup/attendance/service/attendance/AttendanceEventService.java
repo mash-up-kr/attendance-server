@@ -10,6 +10,8 @@ import kr.mashup.attendance.repository.attendance.AttendanceEventRepository;
 import kr.mashup.attendance.service.seminar.SeminarService;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -24,5 +26,9 @@ public class AttendanceEventService {
         Seminar seminar = seminarService.getSeminar(attendanceEventCreateRequest.getSeminarId());
         AttendanceEvent attendanceEvent = AttendanceEvent.of(seminar, attendanceEventCreateRequest.getAttendanceEventType());
         return attendanceEventRepository.save(attendanceEvent);
+    }
+
+    public List<AttendanceEvent> getBySeminar(Seminar seminar) {
+        return attendanceEventRepository.findBySeminar(seminar);
     }
 }
