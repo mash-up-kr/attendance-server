@@ -5,7 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import kr.mashup.attendance.domain.member.Member;
+import kr.mashup.attendance.dto.member.MemberSignInRequest;
 import kr.mashup.attendance.dto.member.MemberSignUpRequest;
+import kr.mashup.attendance.exception.member.MemberNotFoundException;
 import kr.mashup.attendance.repository.member.MemberRepository;
 import kr.mashup.attendance.service.team.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +31,11 @@ public class MemberService {
             teamService.getTeam(memberSignUpRequest.getTeamId())
         );
         return memberRepository.save(member);
+    }
+
+    public Member signIn(MemberSignInRequest memberSignInRequest) {
+        Assert.notNull(memberSignInRequest, "'memberSignInRequest' must not be null");
+        return memberRepository.findByUsername(memberSignInRequest.getUsername())
+            .orElseThrow(MemberNotFoundException::new);
     }
 }
