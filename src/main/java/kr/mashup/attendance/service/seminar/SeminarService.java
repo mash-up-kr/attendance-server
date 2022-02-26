@@ -28,7 +28,9 @@ public class SeminarService {
             season,
             seminarCreateRequest.getTitle(),
             seminarCreateRequest.getTheme(),
-            seminarCreateRequest.getSeminarStartedAt()
+            seminarCreateRequest.getSeminarStartedAt(),
+            seminarCreateRequest.getFirstAttendanceCheckedAt(),
+            seminarCreateRequest.getSecondAttendanceCheckedAt()
         );
         return seminarRepository.save(seminar);
     }

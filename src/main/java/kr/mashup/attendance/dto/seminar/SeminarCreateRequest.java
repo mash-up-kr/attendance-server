@@ -12,4 +12,6 @@ public class SeminarCreateRequest {
     private String title;
     private String theme;
     private LocalDateTime seminarStartedAt;
+    private LocalDateTime firstAttendanceCheckedAt;
+    private LocalDateTime secondAttendanceCheckedAt;
 }

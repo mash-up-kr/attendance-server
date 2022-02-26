@@ -41,18 +41,41 @@ public class Seminar {
 
     private LocalDateTime seminarStartedAt;
 
+    private LocalDateTime firstAttendanceCheckedAt;
+
+    private LocalDateTime secondAttendanceCheckedAt;
+
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public static Seminar of(Season season, String title, String theme, LocalDateTime seminarStartedAt) {
+    private final Integer ATTENDANCE_CHECK_VALID_TIME = 10;
+
+    public static Seminar of(
+        Season season,
+        String title,
+        String theme,
+        LocalDateTime seminarStartedAt,
+        LocalDateTime firstAttendanceCheckedAt,
+        LocalDateTime secondAttendanceCheckedAt
+    ) {
         Seminar seminar = new Seminar();
         seminar.season = season;
         seminar.title = title;
         seminar.theme = theme;
         seminar.seminarStartedAt = seminarStartedAt;
+        seminar.firstAttendanceCheckedAt = firstAttendanceCheckedAt;
+        seminar.secondAttendanceCheckedAt = secondAttendanceCheckedAt;
         return seminar;
+    }
+
+    public LocalDateTime getFirstAttendanceCheckExpiredTime() {
+        return this.firstAttendanceCheckedAt.plusMinutes(ATTENDANCE_CHECK_VALID_TIME);
+    }
+
+    public LocalDateTime getSecondAttendanceCheckExpiredTime() {
+        return this.secondAttendanceCheckedAt.plusMinutes(ATTENDANCE_CHECK_VALID_TIME);
     }
 }
