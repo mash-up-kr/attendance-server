@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import kr.mashup.attendance.domain.member.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -37,7 +38,9 @@ public class AttendanceEvent {
     @JoinColumn(name = "seminar_id")
     private Seminar seminar;
 
-    //TODO ManyToOne Member
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Enumerated(EnumType.STRING)
     private AttendanceEventType type;

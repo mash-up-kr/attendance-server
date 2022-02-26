@@ -14,14 +14,14 @@ import kr.mashup.attendance.service.attendance.AttendanceEventService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/attendance")
+@RequestMapping("/api/v1/attendances")
 @RestController
 public class AttendanceApiController {
 
     private final AttendanceEventService attendanceEventService;
 
     @ApiOperation("출석 체크")
-    @PostMapping
+    @PostMapping("/check")
     public ApiResponse<AttendanceEventResponse> create(
         @RequestBody AttendanceEventCreateRequest attendanceEventCreateRequest
     ) {
